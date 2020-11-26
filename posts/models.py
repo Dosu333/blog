@@ -7,13 +7,13 @@ class BaseModel(models.Model):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4 )
 
 class Topic(BaseModel):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
 
 class Post(BaseModel):
-    category = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(Topic, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=255)
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add = True)

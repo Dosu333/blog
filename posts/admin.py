@@ -4,6 +4,7 @@ from .models import Topic, Post
 
 # Register your models here.
 class PostAdmin(admin.ModelAdmin):
+    ordering = ['created_at']
     list_filter = ['category',]
     search_fields = ['title']
 

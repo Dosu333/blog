@@ -11,6 +11,9 @@ class PostView(ListAPIView):
     serializer_class = PostSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['category__name']
+    
+    def get_queryset(self):
+        return self.queryset.order_by('-created_at')
 
 class TopicView(ListAPIView):
     queryset = Topic.objects.all()
