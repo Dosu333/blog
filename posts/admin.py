@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Topic, Post
+from .models import Topic, Post, Comment
 
 # Register your models here.
 class PostAdmin(admin.ModelAdmin):
@@ -11,5 +11,9 @@ class PostAdmin(admin.ModelAdmin):
 class TopicAdmin(admin.ModelAdmin):
     search_fields = ['name']
 
+class CommentAdmin(admin.ModelAdmin):
+    list_filter = ['related_post']
+
 admin.site.register(Topic, TopicAdmin)
 admin.site.register(Post, PostAdmin)
+admin.site.register(Comment, CommentAdmin)

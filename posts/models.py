@@ -19,7 +19,7 @@ class Post(BaseModel):
     category = models.ForeignKey(Topic, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=255)
     body = models.TextField()
-    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
@@ -27,5 +27,6 @@ class Post(BaseModel):
 
 class Comment(BaseModel):
     author = models.CharField(max_length=255)
-    comment = models.TextField()
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    body = models.TextField()
+    related_post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)

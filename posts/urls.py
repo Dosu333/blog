@@ -1,10 +1,18 @@
 from django.urls import path
 
-from .views import PostView, TopicView
+from .views import PostViewSet, TopicView, CommentView
+
+from rest_framework import routers 
 
 app_name = 'posts'
 
+router = routers.DefaultRouter()
+
+router.register('posts', PostViewSet)
+
 urlpatterns = [
-    path('posts/', PostView.as_view()),
-    path('topics/', TopicView.as_view())
+    path('topics/', TopicView.as_view()),
+    path('comments/', CommentView.as_view()),
 ]
+
+urlpatterns += router.urls
